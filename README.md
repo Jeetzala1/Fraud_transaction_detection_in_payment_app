@@ -1,21 +1,21 @@
-# 💡 Financial Fraud Detection in Transactions: A Machine Learning Approach
+﻿# ðŸ’¡ Financial Fraud Detection in Transactions: A Machine Learning Approach
 
-## 📘 Project Overview
+## ðŸ“˜ Project Overview
 
 This project aims to develop a robust **machine learning model** for the **proactive detection of fraudulent transactions** within a financial company. Leveraging a **large-scale dataset of over 6.3 million transactions**, the primary objective is to build a **highly accurate predictive model** that can identify fraudulent activities in real-time.
 
 
-🔍 Key Focus Areas:
+ðŸ” Key Focus Areas:
 
-🚨 Fraud Detection via Supervised Learning
+ðŸš¨ Fraud Detection via Supervised Learning
 
-📊 EDA & Statistical Insight Extraction
+ðŸ“Š EDA & Statistical Insight Extraction
 
-🧠 Model Explainability using SHAP
+ðŸ§  Model Explainability using SHAP
 
-🛡️ Actionable Recommendations for Prevention
+ðŸ›¡ï¸ Actionable Recommendations for Prevention
 
-💡 Why it matters?
+ðŸ’¡ Why it matters?
 The financial industry faces unprecedented challenges with fraud detection, where traditional rule-based systems often fail to adapt to evolving fraud patterns. This project addresses these challenges by implementing advanced machine learning techniques specifically tailored for highly imbalanced datasets, where fraudulent transactions represent less than 0.13% of all records.
 ---
 
@@ -31,17 +31,17 @@ The financial industry faces unprecedented challenges with fraud detection, wher
 - [Future Enhancements](#future-enhancements)
 
 ---
-## 🚀 Deployed Model Access
+## ðŸš€ Deployed Model Access
 
-🔗 **Model Repository on Hugging Face**:
-👉 [sagarrajak245/fbi\_fraud\_transaction\_detector](https://huggingface.co/sagarrajak245/fbi_fraud_transaction_detector)
+ðŸ”— **Model Repository on Hugging Face**:
+ðŸ‘‰ [Jeetzala1/fbi\_fraud\_transaction\_detector](https://huggingface.co/Jeetzala1/fbi_fraud_transaction_detector)
 
 You can download or load the model directly using the `huggingface_hub` library:
 
 ```python
 from huggingface_hub import hf_hub_download
 
-model_path = hf_hub_download(repo_id="sagarrajak245/fbi_fraud_transaction_detector", filename="xgb_fraud_detection_model.pkl")
+model_path = hf_hub_download(repo_id="Jeetzala1/fbi_fraud_transaction_detector", filename="xgb_fraud_detection_model.pkl")
 ```
 
 ## Dataset Overview
@@ -121,7 +121,7 @@ This suggests that fund transfers between accounts are a preferred method for so
 The distribution analysis of transaction amounts revealed stark behavioral differences between legitimate and fraudulent transactions:
 
 **Legitimate Transactions:**
-- Concentrated at lower amounts (median around ₹75,000)
+- Concentrated at lower amounts (median around â‚¹75,000)
 - Normal distribution with long tail
 - Consistent with everyday financial activities
 - 
@@ -129,14 +129,14 @@ The distribution analysis of transaction amounts revealed stark behavioral diffe
 
 
 **Fraudulent Transactions:**
-- Significantly higher amounts (median around ₹440,000)
+- Significantly higher amounts (median around â‚¹440,000)
 - Bimodal distribution suggesting different fraud strategies
-- Top 10% of fraudulent transactions exceed ₹4.5 million
+- Top 10% of fraudulent transactions exceed â‚¹4.5 million
 
 **Statistical Insights:**
-- 75th percentile of fraud amounts: ₹1.35 million
-- 90th percentile of fraud amounts: ₹4.5 million
-- Maximum fraudulent transaction: ₹92.4 million
+- 75th percentile of fraud amounts: â‚¹1.35 million
+- 90th percentile of fraud amounts: â‚¹4.5 million
+- Maximum fraudulent transaction: â‚¹92.4 million
 
 <img width="1277" height="679" alt="image" src="https://github.com/user-attachments/assets/182ff79c-7b10-48b7-93aa-29fbd39e767c" />
 
@@ -174,7 +174,7 @@ This pattern strongly suggests the use of "mule accounts" - accounts created spe
 
 ### 2.6. System Flag Analysis
 
-The dataset includes an `isFlaggedFraud` feature, theoretically designed to flag transfers over ₹200,000. However, detailed analysis revealed:
+The dataset includes an `isFlaggedFraud` feature, theoretically designed to flag transfers over â‚¹200,000. However, detailed analysis revealed:
 - Only 16 transactions flagged in the entire dataset
 - Thousands of transactions meeting the criteria remained unflagged
 - No correlation between flag status and actual fraud
@@ -184,26 +184,26 @@ This inconsistency led to the exclusion of this feature from our model, highligh
 ---
 
 
-## 🧹 3. Data Cleaning and Preprocessing
+## ðŸ§¹ 3. Data Cleaning and Preprocessing
 
 The data preprocessing pipeline was designed to transform raw transactional data into features optimally suited for machine learning while **preserving critical fraud signals** and mitigating noise from irrelevant or misleading records.
 
 ---
 
-### 🔎 3.1. Data Filtering and Scope Reduction
+### ðŸ”Ž 3.1. Data Filtering and Scope Reduction
 
-* **✅ Transaction Type Filtering**: Only `TRANSFER` and `CASH_OUT` transactions were retained.
-* **🎯 Rationale**: 100% of fraudulent activity is confined to these types.
-* **📉 Impact**: Dataset size reduced by \~60%, with **no loss of fraud cases**.
-* **💼 Business Value**: Focuses detection system on high-risk activities, improving model signal-to-noise ratio.
+* **âœ… Transaction Type Filtering**: Only `TRANSFER` and `CASH_OUT` transactions were retained.
+* **ðŸŽ¯ Rationale**: 100% of fraudulent activity is confined to these types.
+* **ðŸ“‰ Impact**: Dataset size reduced by \~60%, with **no loss of fraud cases**.
+* **ðŸ’¼ Business Value**: Focuses detection system on high-risk activities, improving model signal-to-noise ratio.
 
 ---
 
-### 🧩 3.2. Missing Value and Anomaly Handling
+### ðŸ§© 3.2. Missing Value and Anomaly Handling
 
 While there were no missing values per se, **domain-specific anomalies** required advanced treatment:
 
-#### 🧾 3.2.1. Zero Balance Handling
+#### ðŸ§¾ 3.2.1. Zero Balance Handling
 
 | Feature              | Strategy                        | Reasoning                                                               |
 | -------------------- | ------------------------------- | ----------------------------------------------------------------------- |
@@ -212,51 +212,51 @@ While there were no missing values per se, **domain-specific anomalies** require
 
 ---
 
-### 🧠 3.3. Feature Engineering for Fraud Detection
+### ðŸ§  3.3. Feature Engineering for Fraud Detection
 
 Custom features were crafted to reveal **transactional inconsistencies**:
 
-#### ⚖️ 3.3.1. Origin Balance Error (`errorBalanceOrig`)
+#### âš–ï¸ 3.3.1. Origin Balance Error (`errorBalanceOrig`)
 
 ```python
 errorBalanceOrig = newbalanceOrig + amount - oldbalanceOrg
 ```
 
-* ✅ Should equal **zero** in valid transactions
-* 🔍 Large deviations may indicate **manipulation or data spoofing**
+* âœ… Should equal **zero** in valid transactions
+* ðŸ” Large deviations may indicate **manipulation or data spoofing**
 
-#### 💰 3.3.2. Destination Balance Error (`errorBalanceDest`)
+#### ðŸ’° 3.3.2. Destination Balance Error (`errorBalanceDest`)
 
 ```python
 errorBalanceDest = oldbalanceDest + amount - newbalanceDest
 ```
 
-* ✅ Also expected to be **zero**
-* 🚨 Discrepancies signal **interference**, hidden deductions, or **parallel transactions**
+* âœ… Also expected to be **zero**
+* ðŸš¨ Discrepancies signal **interference**, hidden deductions, or **parallel transactions**
 
 ---
 
-### 🪄 3.4. Feature Selection and Dimensionality Management
+### ðŸª„ 3.4. Feature Selection and Dimensionality Management
 
-#### 🔢 3.4.1. High-Cardinality Columns Dropped
+#### ðŸ”¢ 3.4.1. High-Cardinality Columns Dropped
 
 * **Dropped:** `nameOrig`, `nameDest`
 * **Reason:** No predictive power; too many unique values
 
-#### ⚠️ 3.4.2. Inconsistent Label Removal
+#### âš ï¸ 3.4.2. Inconsistent Label Removal
 
 * **Dropped:** `isFlaggedFraud`
 * **Why:** Label applied inconsistently, misleading during supervised learning
 
-#### 🔄 3.4.3. Categorical Encoding
+#### ðŸ”„ 3.4.3. Categorical Encoding
 
 * **Method:** One-Hot Encoding on `type`
-* **Result:** Two binary features — `type_CASH_OUT`, `type_TRANSFER`
+* **Result:** Two binary features â€” `type_CASH_OUT`, `type_TRANSFER`
 * **Advantage:** Allows model to learn **type-specific fraud behavior**
 
 ---
 
-### 🧪 3.5. Data Splitting Strategy
+### ðŸ§ª 3.5. Data Splitting Strategy
 
 * **Train-Test Split:** 80/20
 * **Stratification:** Ensured fraud ratio (**0.129%**) is preserved in both sets
@@ -266,11 +266,11 @@ errorBalanceDest = oldbalanceDest + amount - newbalanceDest
 
 ---
 
-### 🧬 3.6. Class Imbalance Handling with SMOTE
+### ðŸ§¬ 3.6. Class Imbalance Handling with SMOTE
 
 To address **extreme class imbalance**, the **Synthetic Minority Over-sampling Technique (SMOTE)** was applied *only to the training set*.
 
-#### 🛠️ 3.6.1. SMOTE Methodology
+#### ðŸ› ï¸ 3.6.1. SMOTE Methodology
 
 | Aspect    | Description                                                     |
 | --------- | --------------------------------------------------------------- |
@@ -278,13 +278,13 @@ To address **extreme class imbalance**, the **Synthetic Minority Over-sampling T
 | Scope     | Applied **only on training set** to avoid data leakage          |
 | Goal      | Balance classes for better fraud pattern learning               |
 
-#### 🧠 3.6.2. SMOTE Benefits
+#### ðŸ§  3.6.2. SMOTE Benefits
 
-1. ✅ Improves model's **sensitivity to minority class**
-2. 🚀 Boosts **generalization** to novel fraud behaviors
-3. 🎯 Enhances **recall** without sacrificing precision
+1. âœ… Improves model's **sensitivity to minority class**
+2. ðŸš€ Boosts **generalization** to novel fraud behaviors
+3. ðŸŽ¯ Enhances **recall** without sacrificing precision
 
-#### ⚖️ 3.6.3. Considerations & Safeguards
+#### âš–ï¸ 3.6.3. Considerations & Safeguards
 
 * **Overfitting Risk:** Controlled via **careful model regularization**
 * **Synthetic Sample Quality:** Assessed via **AUPRC on original test set**
@@ -296,45 +296,45 @@ To address **extreme class imbalance**, the **Synthetic Minority Over-sampling T
 
 ---
 
-## ⚙️ Model Development and Selection
+## âš™ï¸ Model Development and Selection
 
-### 🤖 4.1 Algorithm Selection Rationale
+### ðŸ¤– 4.1 Algorithm Selection Rationale
 
 The selection of **XGBoost (Extreme Gradient Boosting)** classifier was based on a comprehensive evaluation across multiple dimensions critical for fraud detection applications.
 
 ---
 
-### 🧠 4.1.1 XGBoost Architecture Deep Dive
+### ðŸ§  4.1.1 XGBoost Architecture Deep Dive
 
-#### ✅ Gradient Boosting Framework
+#### âœ… Gradient Boosting Framework
 
 XGBoost implements an advanced gradient boosting framework that builds an ensemble of weak learners (decision trees) in a **sequential** manner. Each tree is trained to correct the errors of its predecessor, resulting in a powerful composite model.
 
-#### 🧮 Mathematical Foundation
+#### ðŸ§® Mathematical Foundation
 
 The model optimizes the following regularized objective function:
 
 ```math
-L(φ) = Σᵢ l(yᵢ, ŷᵢ) + Σₖ Ω(fₖ)
+L(Ï†) = Î£áµ¢ l(yáµ¢, Å·áµ¢) + Î£â‚– Î©(fâ‚–)
 ```
 
 Where:
 
-* `l(yᵢ, ŷᵢ)` → Loss function (e.g., log-loss for binary classification)
-* `Ω(fₖ)` → Regularization term to control model complexity
-* `fₖ` → Individual tree functions in the ensemble
+* `l(yáµ¢, Å·áµ¢)` â†’ Loss function (e.g., log-loss for binary classification)
+* `Î©(fâ‚–)` â†’ Regularization term to control model complexity
+* `fâ‚–` â†’ Individual tree functions in the ensemble
 
-#### 🔥 Key Algorithmic Advantages
+#### ðŸ”¥ Key Algorithmic Advantages
 
-* ✅ **Built-in Regularization**: L1 & L2 penalties to reduce overfitting
-* ✂️ **Tree Pruning**: Prunes trees intelligently to reduce complexity
-* ❓ **Missing Value Handling**: Learns default split directions automatically
-* 📊 **Feature Importance Outputs**: Gain, cover, and weight importance metrics
-* ⚡ **Parallel Processing**: Accelerated training with multithreading
+* âœ… **Built-in Regularization**: L1 & L2 penalties to reduce overfitting
+* âœ‚ï¸ **Tree Pruning**: Prunes trees intelligently to reduce complexity
+* â“ **Missing Value Handling**: Learns default split directions automatically
+* ðŸ“Š **Feature Importance Outputs**: Gain, cover, and weight importance metrics
+* âš¡ **Parallel Processing**: Accelerated training with multithreading
 
 ---
 
-### ⚔️ 4.1.2 Model Comparison Analysis
+### âš”ï¸ 4.1.2 Model Comparison Analysis
 
 ```python
 from sklearn.metrics import average_precision_score
@@ -349,21 +349,21 @@ print("Random Forest AUPRC:", average_precision_score(y_true, y_pred_rf))  # ~0.
 | **XGBoost**   | **0.9979**  |
 | Random Forest | 0.9971      |
 
-🏆 **Performance Edge**: XGBoost performs better on AUPRC — the preferred metric for **highly imbalanced classification tasks** like fraud detection.
+ðŸ† **Performance Edge**: XGBoost performs better on AUPRC â€” the preferred metric for **highly imbalanced classification tasks** like fraud detection.
 
-#### 🧠 Why XGBoost Works Best
+#### ðŸ§  Why XGBoost Works Best
 
-* 🎯 **Minority Class Focus**: Superior handling of imbalanced datasets
-* 🔄 **Non-linear Mapping**: Detects complex transaction patterns
-* 🔍 **Feature Interactions**: Learns important feature combinations automatically
-* 🧮 **Faster Training**: Better optimization and training speed
-* 🧪 **Production-Ready**: Proven efficiency in real-time fraud detection systems
+* ðŸŽ¯ **Minority Class Focus**: Superior handling of imbalanced datasets
+* ðŸ”„ **Non-linear Mapping**: Detects complex transaction patterns
+* ðŸ” **Feature Interactions**: Learns important feature combinations automatically
+* ðŸ§® **Faster Training**: Better optimization and training speed
+* ðŸ§ª **Production-Ready**: Proven efficiency in real-time fraud detection systems
 
 ---
 
-### 🧪 4.2 Hyperparameter Optimization Strategy
+### ðŸ§ª 4.2 Hyperparameter Optimization Strategy
 
-#### 🔧 4.2.1 Key Hyperparameters Tuned
+#### ðŸ”§ 4.2.1 Key Hyperparameters Tuned
 
 | Hyperparameter           | Description                             |
 | ------------------------ | --------------------------------------- |
@@ -376,14 +376,14 @@ print("Random Forest AUPRC:", average_precision_score(y_true, y_pred_rf))  # ~0.
 
 ---
 
-#### 🎯 4.2.2 Optimization Methodology
+#### ðŸŽ¯ 4.2.2 Optimization Methodology
 
-🛠️ **Tools & Techniques Used**:
+ðŸ› ï¸ **Tools & Techniques Used**:
 
-* 🧮 **Grid Search**: Exhaustive hyperparameter sweep
-* 🧪 **Stratified K-Fold Cross-Validation (k=5)**: Ensures robustness on imbalanced data
-* 🎯 **Evaluation Metric**: Focused on **AUPRC**, not accuracy
-* 🧾 **Validation Strategy**: Model assessed on a holdout validation set
+* ðŸ§® **Grid Search**: Exhaustive hyperparameter sweep
+* ðŸ§ª **Stratified K-Fold Cross-Validation (k=5)**: Ensures robustness on imbalanced data
+* ðŸŽ¯ **Evaluation Metric**: Focused on **AUPRC**, not accuracy
+* ðŸ§¾ **Validation Strategy**: Model assessed on a holdout validation set
 
 ```python
 from sklearn.model_selection import GridSearchCV
@@ -408,9 +408,9 @@ print(grid.best_params_)
 
 ---
 
-### 🧬 4.3 Feature Importance and Selection
+### ðŸ§¬ 4.3 Feature Importance and Selection
 
-🧩 The final model includes **9 selected features**, all optimized for fraud detection tasks.
+ðŸ§© The final model includes **9 selected features**, all optimized for fraud detection tasks.
 
 ```python
 features_used = [
@@ -434,48 +434,48 @@ features_used = [
 
 ---
 
-#### 📐 Feature Selection Principles
+#### ðŸ“ Feature Selection Principles
 
-* 🎯 **Behavioral Focus**: Emphasizes transaction patterns over customer identity
-* 💥 **Fraud Signal Strength**: Each feature shows high signal-to-noise ratio
-* 🧩 **Low Multicollinearity**: Avoids redundancy, increases generalizability
-* 🧠 **Interpretability**: Features are business-intuitive and explainable
-
----
-
+* ðŸŽ¯ **Behavioral Focus**: Emphasizes transaction patterns over customer identity
+* ðŸ’¥ **Fraud Signal Strength**: Each feature shows high signal-to-noise ratio
+* ðŸ§© **Low Multicollinearity**: Avoids redundancy, increases generalizability
+* ðŸ§  **Interpretability**: Features are business-intuitive and explainable
 
 ---
 
-## 📊 5. Model Performance Evaluation
 
 ---
 
-### ⚙️ 5.1. Evaluation Methodology for Imbalanced Classification
+## ðŸ“Š 5. Model Performance Evaluation
+
+---
+
+### âš™ï¸ 5.1. Evaluation Methodology for Imbalanced Classification
 
 In fraud detection, the **extreme class imbalance** (fraud accounts for only **0.129%** of transactions) renders traditional accuracy metrics **insufficient**. Hence, we adopted a **domain-appropriate evaluation strategy** focusing on *precision*, *recall*, *AUPRC*, and *confusion matrix analysis*.
 
 ---
 
-### 📈 5.1.1. Primary Evaluation Metrics
+### ðŸ“ˆ 5.1.1. Primary Evaluation Metrics
 
-#### ✅ Area Under Precision-Recall Curve (AUPRC): **0.9979**
+#### âœ… Area Under Precision-Recall Curve (AUPRC): **0.9979**
 
 * **Why it matters:** Precision-Recall metrics are the **gold standard** for highly imbalanced datasets.
 * **How to interpret:** Our AUPRC score is **very close to 1.0**, indicating the model rarely makes incorrect positive predictions and captures nearly all fraud cases.
-* **Baseline:** A random classifier would achieve AUPRC ≈ 0.00129.
-* **📊 Visualization Tip:** Add a **Precision-Recall curve plot** comparing model vs. baseline.
+* **Baseline:** A random classifier would achieve AUPRC â‰ˆ 0.00129.
+* **ðŸ“Š Visualization Tip:** Add a **Precision-Recall curve plot** comparing model vs. baseline.
 
-#### ✅ ROC-AUC Score: **0.9990**
+#### âœ… ROC-AUC Score: **0.9990**
 
-* **Meaning:** There’s a **99.90% chance** that a randomly chosen fraud transaction will be ranked higher than a non-fraud one.
+* **Meaning:** Thereâ€™s a **99.90% chance** that a randomly chosen fraud transaction will be ranked higher than a non-fraud one.
 * **Limitation:** ROC-AUC can be **misleading** under class imbalance, so it complements but does not replace AUPRC.
-* **📊 Visualization Tip:** Include **ROC curve** with diagonal reference (random classifier).
+* **ðŸ“Š Visualization Tip:** Include **ROC curve** with diagonal reference (random classifier).
 
 ---
 
-### 🔍 5.1.2. Confusion Matrix Analysis
+### ðŸ” 5.1.2. Confusion Matrix Analysis
 
-#### 📦 Test Set Size: 272,524 Transactions
+#### ðŸ“¦ Test Set Size: 272,524 Transactions
 
 ```
                  Predicted
@@ -496,13 +496,13 @@ Total          271,878     646      272,524
 | **False Positives** | 0       | No legitimate transactions incorrectly flagged |
 | **False Negatives** | 0       | No fraud cases missed                          |
 
-* ✅ **Perfect classification performance on test set**
-* 🔒 **Zero False Negatives** → No fraud missed
-* 🌱 **Zero False Positives** → No customer inconvenience
+* âœ… **Perfect classification performance on test set**
+* ðŸ”’ **Zero False Negatives** â†’ No fraud missed
+* ðŸŒ± **Zero False Positives** â†’ No customer inconvenience
 
 ---
 
-### 📌 5.1.3. Classification Report (Fraud Class)
+### ðŸ“Œ 5.1.3. Classification Report (Fraud Class)
 
 | Metric        | Fraud Class |
 | ------------- | ----------- |
@@ -515,53 +515,53 @@ Total          271,878     646      272,524
 * **Weighted Avg F1:** 0.9999
 * **Accuracy:** 99.999% *(Note: Inflated due to imbalance)*
 
-🧠 *Interpretation:* Exceptional ability to balance **low false alarms** with **complete fraud detection**.
+ðŸ§  *Interpretation:* Exceptional ability to balance **low false alarms** with **complete fraud detection**.
 
 ---
 
-## 💼 5.2. Business Impact Analysis
+## ðŸ’¼ 5.2. Business Impact Analysis
 
 ---
 
-### 💰 5.2.1. Financial Impact Assessment
+### ðŸ’° 5.2.1. Financial Impact Assessment
 
 | Metric                       | Value                         |
 | ---------------------------- | ----------------------------- |
-| **Total Fraud Value (Test)** | ₹287.4 million                |
-| **Detected Fraud Value**     | ₹287.4 million (100%)         |
-| **Prevented Financial Loss** | ₹287.4 million                |
-| **False Positive Cost**      | ₹0 (No investigations needed) |
+| **Total Fraud Value (Test)** | â‚¹287.4 million                |
+| **Detected Fraud Value**     | â‚¹287.4 million (100%)         |
+| **Prevented Financial Loss** | â‚¹287.4 million                |
+| **False Positive Cost**      | â‚¹0 (No investigations needed) |
 
 **Impact Highlights:**
 
-* 💯 **All fraud caught** = Maximum financial protection
-* 🧾 **No false alarms** = No investigation waste
-* 🧍‍♂️ **No customer disruption** = Improved experience
+* ðŸ’¯ **All fraud caught** = Maximum financial protection
+* ðŸ§¾ **No false alarms** = No investigation waste
+* ðŸ§â€â™‚ï¸ **No customer disruption** = Improved experience
 
-📊 **Suggested Visual:** Bar chart showing:
+ðŸ“Š **Suggested Visual:** Bar chart showing:
 
 * Detected vs Missed fraud amount
 * False Positives vs False Negatives count
 
 ---
 
-### ✅ 5.2.2. Model Reliability Assessment
+### âœ… 5.2.2. Model Reliability Assessment
 
 | Aspect                  | Status      | Comments                                                   |
 | ----------------------- | ----------- | ---------------------------------------------------------- |
-| **Consistency**         | ✅ Stable    | Works across all transaction types                         |
-| **Fraud Type Coverage** | ✅ Excellent | Strong performance on **TRANSFER** and **CASH\_OUT** fraud |
-| **Balance Sensitivity** | ✅ Robust    | Handles varying account balances well                      |
+| **Consistency**         | âœ… Stable    | Works across all transaction types                         |
+| **Fraud Type Coverage** | âœ… Excellent | Strong performance on **TRANSFER** and **CASH\_OUT** fraud |
+| **Balance Sensitivity** | âœ… Robust    | Handles varying account balances well                      |
 
-#### ⚠️ Risk and Maintenance Factors:
+#### âš ï¸ Risk and Maintenance Factors:
 
-* 🔁 **Concept Drift Risk:** Medium — patterns of fraud evolve; needs **periodic retraining**.
-* 🧪 **Overfitting Check:** Low risk — performance validated on **unseen test data**.
-* 👁️‍🗨️ **False Negative Risk:** Currently zero, but **constant monitoring** is advised.
+* ðŸ” **Concept Drift Risk:** Medium â€” patterns of fraud evolve; needs **periodic retraining**.
+* ðŸ§ª **Overfitting Check:** Low risk â€” performance validated on **unseen test data**.
+* ðŸ‘ï¸â€ðŸ—¨ï¸ **False Negative Risk:** Currently zero, but **constant monitoring** is advised.
 
 ---
 
-### 📊 Suggested Graphs for Report/Presentation
+### ðŸ“Š Suggested Graphs for Report/Presentation
 
 1. **Confusion Matrix Heatmap**
 2. **Precision-Recall Curve**
@@ -574,13 +574,13 @@ Total          271,878     646      272,524
 
 ---
 
-## 🔍 **Model Interpretability & Key Factors**
+## ðŸ” **Model Interpretability & Key Factors**
 
-### 🎯 **6.1. SHAP (SHapley Additive exPlanations) Analysis**
+### ðŸŽ¯ **6.1. SHAP (SHapley Additive exPlanations) Analysis**
 
 SHAP offers a game-theoretic framework to interpret the predictions of our XGBoost model, helping identify why the model flagged a transaction as fraudulent.
 
-#### 📊 **6.1.1. Global Feature Importance**
+#### ðŸ“Š **6.1.1. Global Feature Importance**
 
 Top predictors of fraud behavior:
 
@@ -589,140 +589,140 @@ Top predictors of fraud behavior:
 
 
 
-| Rank | 🧠 Feature         | 📈 Impact Score | 📝 Business Insight                                              |
+| Rank | ðŸ§  Feature         | ðŸ“ˆ Impact Score | ðŸ“ Business Insight                                              |
 | ---- | ------------------ | --------------- | ---------------------------------------------------------------- |
-| 1️⃣  | `errorBalanceOrig` | 0.847           | 🚩 Discrepancies in sender balance—strong signal of manipulation |
-| 2️⃣  | `oldbalanceOrg`    | 0.623           | 🎯 High-value accounts are prime fraud targets                   |
-| 3️⃣  | `type_TRANSFER`    | 0.445           | 🔄 Transfers carry 3.2x higher fraud risk                        |
-| 4️⃣  | `amount`           | 0.398           | 💸 High-value transactions require scrutiny                      |
-| 5️⃣  | `newbalanceDest`   | 0.267           | 💡 Suspicious destination balance behavior                       |
-| 6️⃣  | `oldbalanceDest`   | 0.234           | 🧾 Zero-balance accounts signal mule activity                    |
+| 1ï¸âƒ£  | `errorBalanceOrig` | 0.847           | ðŸš© Discrepancies in sender balanceâ€”strong signal of manipulation |
+| 2ï¸âƒ£  | `oldbalanceOrg`    | 0.623           | ðŸŽ¯ High-value accounts are prime fraud targets                   |
+| 3ï¸âƒ£  | `type_TRANSFER`    | 0.445           | ðŸ”„ Transfers carry 3.2x higher fraud risk                        |
+| 4ï¸âƒ£  | `amount`           | 0.398           | ðŸ’¸ High-value transactions require scrutiny                      |
+| 5ï¸âƒ£  | `newbalanceDest`   | 0.267           | ðŸ’¡ Suspicious destination balance behavior                       |
+| 6ï¸âƒ£  | `oldbalanceDest`   | 0.234           | ðŸ§¾ Zero-balance accounts signal mule activity                    |
 
 
-#### 🔁 **6.1.2. High-Risk Feature Combinations**
+#### ðŸ” **6.1.2. High-Risk Feature Combinations**
 
-* ⚠️ **High-Value Drain:** `oldbalanceOrg` > ₹5M + `amount` > 80% → 95% fraud probability
-* 🔄 **Manipulated Transfers:** `errorBalanceOrig` > ₹50K + `type_TRANSFER` → 90% fraud probability
-* 💼 **Mule Laundering:** `oldbalanceDest` = -1 + `amount` > ₹1M → 85% fraud probability
+* âš ï¸ **High-Value Drain:** `oldbalanceOrg` > â‚¹5M + `amount` > 80% â†’ 95% fraud probability
+* ðŸ”„ **Manipulated Transfers:** `errorBalanceOrig` > â‚¹50K + `type_TRANSFER` â†’ 90% fraud probability
+* ðŸ’¼ **Mule Laundering:** `oldbalanceDest` = -1 + `amount` > â‚¹1M â†’ 85% fraud probability
 
 ---
 <img width="995" height="821" alt="image" src="https://github.com/user-attachments/assets/0c0be15a-71f0-4e9a-95f3-e8a39ea4c804" />
 
 
-### 🌳 **6.2. Decision Tree Rules**
+### ðŸŒ³ **6.2. Decision Tree Rules**
 
 Key rules derived from model:
 
-1. 🔍 **`errorBalanceOrig` > ₹75K → Flag** (85% precision)
-2. 💰 **High Balance + High Amount → High Risk** (₹8M + ₹3M) → 92%
-3. 🧾 **TRANSFER to Zero-Balance Account → Mule** → 78%
+1. ðŸ” **`errorBalanceOrig` > â‚¹75K â†’ Flag** (85% precision)
+2. ðŸ’° **High Balance + High Amount â†’ High Risk** (â‚¹8M + â‚¹3M) â†’ 92%
+3. ðŸ§¾ **TRANSFER to Zero-Balance Account â†’ Mule** â†’ 78%
 
 ---
 
-### 📉 **6.3. Model Behavior Analysis**
+### ðŸ“‰ **6.3. Model Behavior Analysis**
 
-#### ✅ **Prediction Confidence**
+#### âœ… **Prediction Confidence**
 
 <img width="935" height="799" alt="image" src="https://github.com/user-attachments/assets/128f76f3-d70b-4f48-adfa-7e431a7cdbe6" />
 
 
-* 🔐 **High Confidence (>0.95):**
+* ðŸ” **High Confidence (>0.95):**
 
-  * ✅ 89% of actual frauds
-  * ✅ 99.8% of legitimate transactions
-* 🕵️ **Medium Confidence (0.5–0.95):**
+  * âœ… 89% of actual frauds
+  * âœ… 99.8% of legitimate transactions
+* ðŸ•µï¸ **Medium Confidence (0.5â€“0.95):**
 
-  * 🛂 Flagged for human review
+  * ðŸ›‚ Flagged for human review
 
-#### ⚠️ **Edge Case Patterns**
+#### âš ï¸ **Edge Case Patterns**
 
-* 🔸 Small frauds (<₹100K)
-* 🔸 Long-history accounts with sudden fraud
-* 🔸 Gradual draining across sessions
-
----
-
-## 💼 **Business Insights & Recommendations**
-
-### 🔎 **7.1. Fraud Behavior Insights**
-
-#### 🔄 **7.1.1. Lifecycle of a Fraud Attempt**
-
-1. 🎯 Target high-balance account
-2. 🔓 Gain unauthorized access
-3. 🧾 Prep mule accounts
-4. 💸 Execute high-value transfer
-5. 🧪 Mask through manipulation
-
-🧠 **Average Loss:** ₹445K per fraud
-⚡ **Execution Time:** Seconds
-🛑 **Recovery Odds:** Low
-
-#### 🧠 **7.1.2. Behavioral Patterns**
-
-* 🔁 **TRANSFER preferred** (68% of cases)
-* 🏦 **High-value dormant accounts = targets**
-* 🧳 **New mule accounts for laundering**
+* ðŸ”¸ Small frauds (<â‚¹100K)
+* ðŸ”¸ Long-history accounts with sudden fraud
+* ðŸ”¸ Gradual draining across sessions
 
 ---
 
-### 🚦 **7.2. Risk Assessment Framework**
+## ðŸ’¼ **Business Insights & Recommendations**
 
-#### 📊 **Real-Time Transaction Risk Scoring**
+### ðŸ”Ž **7.1. Fraud Behavior Insights**
+
+#### ðŸ”„ **7.1.1. Lifecycle of a Fraud Attempt**
+
+1. ðŸŽ¯ Target high-balance account
+2. ðŸ”“ Gain unauthorized access
+3. ðŸ§¾ Prep mule accounts
+4. ðŸ’¸ Execute high-value transfer
+5. ðŸ§ª Mask through manipulation
+
+ðŸ§  **Average Loss:** â‚¹445K per fraud
+âš¡ **Execution Time:** Seconds
+ðŸ›‘ **Recovery Odds:** Low
+
+#### ðŸ§  **7.1.2. Behavioral Patterns**
+
+* ðŸ” **TRANSFER preferred** (68% of cases)
+* ðŸ¦ **High-value dormant accounts = targets**
+* ðŸ§³ **New mule accounts for laundering**
+
+---
+
+### ðŸš¦ **7.2. Risk Assessment Framework**
+
+#### ðŸ“Š **Real-Time Transaction Risk Scoring**
 
 | Risk Level        | Indicators                                               |
 | ----------------- | -------------------------------------------------------- |
-| 🔴 High (90–100)  | ₹2M+ amount, new dest. account, large `errorBalanceOrig` |
-| 🟠 Medium (60–89) | ₹500K–₹2M, mild inconsistencies                          |
-| 🟢 Low (0–59)     | Consistent balances, small transactions                  |
+| ðŸ”´ High (90â€“100)  | â‚¹2M+ amount, new dest. account, large `errorBalanceOrig` |
+| ðŸŸ  Medium (60â€“89) | â‚¹500Kâ€“â‚¹2M, mild inconsistencies                          |
+| ðŸŸ¢ Low (0â€“59)     | Consistent balances, small transactions                  |
 
-#### 👤 **Customer Profiling Tiers**
+#### ðŸ‘¤ **Customer Profiling Tiers**
 
 | Tier       | Criteria       | Monitoring          |
 | ---------- | -------------- | ------------------- |
-| 🛡️ Tier 1 | ₹25M+ accounts | Enhanced monitoring |
-| 🛡️ Tier 2 | ₹5M–₹25M       | Standard monitoring |
-| 🛡️ Tier 3 | <₹5M           | Automated systems   |
+| ðŸ›¡ï¸ Tier 1 | â‚¹25M+ accounts | Enhanced monitoring |
+| ðŸ›¡ï¸ Tier 2 | â‚¹5Mâ€“â‚¹25M       | Standard monitoring |
+| ðŸ›¡ï¸ Tier 3 | <â‚¹5M           | Automated systems   |
 
 ---
 
-### 🛠️ **7.3. Strategic Fraud Prevention Plan**
+### ðŸ› ï¸ **7.3. Strategic Fraud Prevention Plan**
 
-#### 🧩 **7.3.1. Technical Actions**
+#### ðŸ§© **7.3.1. Technical Actions**
 
-* ⚙️ **Deploy XGBoost via API**
-* ⏱️ Real-time scoring (threshold > 0.85)
-* 🚨 Instant alerting and account freeze
+* âš™ï¸ **Deploy XGBoost via API**
+* â±ï¸ Real-time scoring (threshold > 0.85)
+* ðŸš¨ Instant alerting and account freeze
 
-#### 🔐 **7.3.2. Authentication Upgrades**
+#### ðŸ” **7.3.2. Authentication Upgrades**
 
-* 🔄 Risk-based authentication
-* 📲 Dynamic transaction limits
-* 🧬 Behavioral biometrics
+* ðŸ”„ Risk-based authentication
+* ðŸ“² Dynamic transaction limits
+* ðŸ§¬ Behavioral biometrics
 
-#### 🏢 **7.3.3. Operational Enhancements**
+#### ðŸ¢ **7.3.3. Operational Enhancements**
 
-* 📈 Investigator dashboard with SHAP
-* ⏱️ Sub-2-minute fraud intervention
-* 📞 Proactive customer fraud alerting
+* ðŸ“ˆ Investigator dashboard with SHAP
+* â±ï¸ Sub-2-minute fraud intervention
+* ðŸ“ž Proactive customer fraud alerting
 
 ---
 
-### 🏗️ **7.4. Infrastructure Roadmap**
+### ðŸ—ï¸ **7.4. Infrastructure Roadmap**
 
-#### 🚀 **Short-Term (0–3 months)**
+#### ðŸš€ **Short-Term (0â€“3 months)**
 
 * Deploy model
 * Launch scoring API
 * Form response team
 
-#### 📈 **Medium-Term (3–12 months)**
+#### ðŸ“ˆ **Medium-Term (3â€“12 months)**
 
 * Build advanced behavior profiling
 * Add external fraud watchlists
 * Initiate fraud network detection
 
-#### 🌐 **Long-Term (1–3 years)**
+#### ðŸŒ **Long-Term (1â€“3 years)**
 
 * Integrate AI for fraud discovery
 * Cross-bank fraud intelligence sharing
@@ -730,36 +730,36 @@ Key rules derived from model:
 
 ---
 
-### 📐 **7.5. Success Metrics**
+### ðŸ“ **7.5. Success Metrics**
 
 | Category            | KPI              | Target   |
 | ------------------- | ---------------- | -------- |
-| 🕵️ Fraud Detection | Detection Rate   | >99%     |
-| 🚨 False Positives  | Rate             | <1%      |
-| ⏱️ Response Time    | Avg              | <30s     |
-| 💸 Financial Impact | Losses Prevented | Maximize |
-| 💬 Customer Trust   | Retention        | >99%     |
-| ⚙️ System           | Uptime           | >99.9%   |
+| ðŸ•µï¸ Fraud Detection | Detection Rate   | >99%     |
+| ðŸš¨ False Positives  | Rate             | <1%      |
+| â±ï¸ Response Time    | Avg              | <30s     |
+| ðŸ’¸ Financial Impact | Losses Prevented | Maximize |
+| ðŸ’¬ Customer Trust   | Retention        | >99%     |
+| âš™ï¸ System           | Uptime           | >99.9%   |
 
 ---
 
-## 🔮 **Future Enhancements**
+## ðŸ”® **Future Enhancements**
 
-### 🤖 **8.1. Advanced ML Techniques**
+### ðŸ¤– **8.1. Advanced ML Techniques**
 
-#### 🧠 **8.1.1. Deep Learning**
+#### ðŸ§  **8.1.1. Deep Learning**
 
 * DNNs, LSTMs, Transformers
 * Detect unseen patterns
 * Handle temporal sequences
 
-#### 🌐 **8.1.2. Graph Neural Networks**
+#### ðŸŒ **8.1.2. Graph Neural Networks**
 
 * Model account networks
 * Detect laundering chains
 * Mule account pattern recognition
 
-#### 🧪 **8.1.3. Ensemble Fusion**
+#### ðŸ§ª **8.1.3. Ensemble Fusion**
 
 * Stacking XGBoost + RNNs + SVM
 * Bayesian model averaging
@@ -767,13 +767,13 @@ Key rules derived from model:
 
 ---
 
-## ✅ **Final Thoughts & Salutation**
+## âœ… **Final Thoughts & Salutation**
 
-🔐 **Securing the Future of Finance with Intelligence**
-By combining machine learning, deep behavioral insights, and a strategic risk framework, this project not only detects fraud — it *anticipates* it. As threats evolve, so must our defenses. Let this be the foundation for a continuously learning, ever-vigilant fraud prevention infrastructure.
+ðŸ” **Securing the Future of Finance with Intelligence**
+By combining machine learning, deep behavioral insights, and a strategic risk framework, this project not only detects fraud â€” it *anticipates* it. As threats evolve, so must our defenses. Let this be the foundation for a continuously learning, ever-vigilant fraud prevention infrastructure.
 
 **Thank you for exploring this journey into AI-powered financial security.**
-🛡️💻🔍
+ðŸ›¡ï¸ðŸ’»ðŸ”
 
 ---
 

@@ -1,14 +1,14 @@
-# 💳 XGBoost Financial Fraud Detection Model
+﻿# ðŸ’³ XGBoost Financial Fraud Detection Model
 
-## 🧠 Model Summary
+## ðŸ§  Model Summary
 
-This XGBoost classifier is trained to detect **fraudulent financial transactions** using engineered features derived from transactional metadata. It was trained on a highly imbalanced dataset of over 6.3 million transactions, filtered down to `TRANSFER` and `CASH_OUT` types—since fraud only occurs in those categories.
+This XGBoost classifier is trained to detect **fraudulent financial transactions** using engineered features derived from transactional metadata. It was trained on a highly imbalanced dataset of over 6.3 million transactions, filtered down to `TRANSFER` and `CASH_OUT` typesâ€”since fraud only occurs in those categories.
 
 The model uses domain-specific insights and advanced feature engineering to learn behavioral patterns associated with fraudulent activities. It is optimized for high **recall and precision**, making it suitable for real-time fraud prevention systems.
 
 ---
 
-## 📊 Model Performance (on Validation Set)
+## ðŸ“Š Model Performance (on Validation Set)
 
 | Metric                  | Score     |
 |-------------------------|-----------|
@@ -19,11 +19,11 @@ The model uses domain-specific insights and advanced feature engineering to lear
 | ROC AUC                 | 0.9990    |
 | **PR AUC (AUPRC)**      | **0.9979** |
 
-> ⚠️ AUPRC is the most reliable metric for this imbalanced dataset.
+> âš ï¸ AUPRC is the most reliable metric for this imbalanced dataset.
 
 ---
 
-## 🛠 Features Used
+## ðŸ›  Features Used
 
 The following features were used to train the model:
 
@@ -39,21 +39,21 @@ The following features were used to train the model:
 
 ---
 
-## 🔍 Use Cases
+## ðŸ” Use Cases
 
-- ✅ Real-time fraud detection in banking applications
-- ✅ Alert prioritization systems for fraud analysts
-- ✅ Risk scoring for financial transactions
+- âœ… Real-time fraud detection in banking applications
+- âœ… Alert prioritization systems for fraud analysts
+- âœ… Risk scoring for financial transactions
 
 ---
 
-## 🧪 Intended Use
+## ðŸ§ª Intended Use
 
 This model is designed for **educational, research, and prototyping** purposes. It can be integrated into a fraud monitoring dashboard or used as a backend scoring engine. The model is best used **on transactions of type `TRANSFER` and `CASH_OUT` only**.
 
 ---
 
-## 🚫 Limitations
+## ðŸš« Limitations
 
 - The model only works well on transactions similar in structure to the training data.
 - It is not trained on `DEBIT`, `PAYMENT`, or `CASH_IN` transactions (fraud does not occur in them).
@@ -61,13 +61,13 @@ This model is designed for **educational, research, and prototyping** purposes. 
 
 ---
 
-## 🔐 Ethics & Bias
+## ðŸ” Ethics & Bias
 
 This model makes **no assumptions about user identity**, geography, or behavior outside of financial transactions. However, like all ML systems, **model drift** and **adversarial behavior** may impact its long-term effectiveness.
 
 ---
 
-## 📦 Deployment
+## ðŸ“¦ Deployment
 
 This model is deployed via Hugging Face Spaces and can be tested through the interactive Gradio UI or invoked as an API using:
 
@@ -75,7 +75,7 @@ This model is deployed via Hugging Face Spaces and can be tested through the int
 from inference import predict
 predict({...})
 
-👤 Author
-Sagar Rajak
+ðŸ‘¤ Author
+Jeet Zala
 Department of Artificial Intelligence and Data Science
-[INSAID / Vivekanand Education Society’s Institute of Technology]
+[INSAID / Vivekanand Education Societyâ€™s Institute of Technology]
